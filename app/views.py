@@ -1,7 +1,7 @@
 """
 Definition of views.
 """
-
+from app.models import Category
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
@@ -10,6 +10,8 @@ from datetime import datetime
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    category_list = Category.objects
+    context_dict = {'categories': category_list}
     return render(
         request,
         'app/index.html',
